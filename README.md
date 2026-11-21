@@ -1,5 +1,7 @@
 # LKORA TA2ERA
 
+**Auteur : Taha Amine ER-RAFIY**
+
 Jeu de casse-briques en Java Swing avec trois niveaux et des bonus. Les briques marquées **2** demandent deux coups.
 
 ## Aperçus
@@ -19,6 +21,8 @@ Jeu de casse-briques en Java Swing avec trois niveaux et des bonus. Les briques 
 Ces versions comprennent Java. La version macOS est prévue pour les Mac Apple Silicon ; l’application non signée peut nécessiter une autorisation dans les réglages de sécurité macOS.
 
 ### Avec le JAR fourni séparément
+
+Lien du [dossier Google Drive des projets](https://drive.google.com/drive/folders/142oTYlOMR1IxR8I0Bn8eyAaYpJ_ZKA-x?usp=sharing).
 
 Installer Java 8 ou une version ultérieure, puis ouvrir un terminal dans le dossier contenant `LKORA-TA2ERA.jar` et lancer :
 
