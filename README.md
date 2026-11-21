@@ -4,6 +4,10 @@ Un casse-briques en Java Swing : détruis toutes les briques pour réussir les t
 
 ![Écran de jeu de Lkora Ta2era](captures/jeu.png)
 
+### Une partie en cours
+
+![Une partie de Lkora Ta2era avec un bonus](captures/partie.png)
+
 ## Télécharger
 
 Les archives Windows et macOS sont disponibles dans la section **Releases** du dépôt GitHub. Elles comprennent Java : aucune installation séparée de Java n'est nécessaire. La version macOS est destinée aux Mac Apple Silicon (ARM64). Sur macOS, l'application non signée peut nécessiter une autorisation dans les réglages de sécurité.
