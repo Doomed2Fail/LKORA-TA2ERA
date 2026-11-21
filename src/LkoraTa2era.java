@@ -1,4 +1,4 @@
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 /** Point de départ du jeu. */
 public class LkoraTa2era {

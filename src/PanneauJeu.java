@@ -1,10 +1,9 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Random;
+import java.awt.geom.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.Timer;
 
 /** Dessin, événements et règles du casse-briques. */
 public class PanneauJeu extends JPanel {

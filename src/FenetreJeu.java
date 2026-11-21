@@ -1,4 +1,4 @@
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /** La fenêtre contient le panneau qui dessine et anime le jeu. */
 public class FenetreJeu extends JFrame {
