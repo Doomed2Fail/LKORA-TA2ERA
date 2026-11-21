@@ -1,35 +1,44 @@
-# Lkora Ta2era
+# LKORA TA2ERA
 
-Un casse-briques en Java Swing : détruis toutes les briques pour réussir les trois niveaux ! Les briques marquées **2** demandent deux coups.
+Jeu de casse-briques en Java Swing avec trois niveaux et des bonus. Les briques marquées **2** demandent deux coups.
 
-![Écran de jeu de Lkora Ta2era](captures/jeu.png)
+## Aperçus
 
-### Une partie en cours
+![Écran de jeu](captures/jeu.png)
 
-![Une partie de Lkora Ta2era avec un bonus](captures/partie.png)
+![Une partie en cours](captures/partie.png)
 
-## Télécharger
+## Installer et lancer
 
-Les archives Windows et macOS sont disponibles dans la section **Releases** du dépôt GitHub. Elles comprennent Java : aucune installation séparée de Java n'est nécessaire. La version macOS est destinée aux Mac Apple Silicon (ARM64). Sur macOS, l'application non signée peut nécessiter une autorisation dans les réglages de sécurité.
+### Avec les versions GitHub
 
-## Lancer dans IntelliJ IDEA
+1. Ouvrir la page [Releases](https://github.com/Doomed2Fail/LKORA-TA2ERA/releases/latest) et télécharger l’archive correspondant à son ordinateur.
+2. Décompresser l’archive ZIP.
+3. Sous Windows, ouvrir le dossier décompressé et lancer `LkoraTa2era.exe`. Sous macOS, ouvrir `LkoraTa2era.app`.
 
-1. Ouvre le dossier `LkoraTa2era` dans IntelliJ IDEA.
-2. Configure un JDK dans **File → Project Structure → Project** si nécessaire.
-3. Ouvre `src/LkoraTa2era.java` et lance sa méthode `main` avec le bouton vert.
+Ces versions comprennent Java. La version macOS est prévue pour les Mac Apple Silicon ; l’application non signée peut nécessiter une autorisation dans les réglages de sécurité macOS.
 
-En ligne de commande, avec un JDK disponible : `javac -encoding UTF-8 -d out src/*.java`, puis `java -cp out LkoraTa2era`.
+### Avec le JAR fourni séparément
 
-## Commandes et règles
+Installer Java 8 ou une version ultérieure, puis ouvrir un terminal dans le dossier contenant `LKORA-TA2ERA.jar` et lancer :
 
-- Souris ou flèches gauche/droite : déplacer la barre.
-- Espace ou clic : lancer la balle ; après une partie, recommencer.
-- P : pause/reprise. R : recommencer à tout moment.
-- La partie est perdue dès qu'une balle tombe, même s'il reste d'autres balles.
-- Attrape les bonus qui tombent : **x2** double les balles (maximum 8) et **↔** agrandit temporairement la barre.
+```sh
+java -jar LKORA-TA2ERA.jar
+```
 
-Le projet utilise notamment `JFrame`, `JPanel`, `paintComponent`, les événements, un `Timer`, les collections et les collisions avec `Rectangle`.
+Un double-clic peut fonctionner si les fichiers JAR sont associés à Java. Vérifier l’installation avec `java -version` si la commande n’est pas reconnue.
+
+### Depuis le code source
+
+Dans IntelliJ IDEA, ouvrir le dépôt, configurer un JDK et lancer la méthode `main` de `src/LkoraTa2era.java`.
+
+## Commandes
+
+- Souris ou flèches : déplacer la barre.
+- Espace ou clic : lancer la balle ou recommencer après une partie.
+- P : pause et reprise ; R : recommencer.
+- Une balle qui tombe termine la partie. Le bonus **x2** multiplie les balles et **↔** agrandit temporairement la barre.
 
 ## Licence
 
-Copyright © 2026 Taha Amine ER-RAFIY. Distribué sous [licence MIT](LICENSE).
+Copyright © 2026 Taha Amine ER-RAFIY — [licence MIT](LICENSE).
