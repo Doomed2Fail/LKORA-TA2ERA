@@ -1,0 +1,75 @@
+name: Construire les versions Windows et macOS
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            platform: Windows
+          - os: macos-latest
+            platform: macOS
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Compiler et créer le JAR
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force build/classes, build/input | Out-Null
+          $sources = Get-ChildItem src/*.java | ForEach-Object { $_.FullName }
+          & javac -encoding UTF-8 --release 8 -d build/classes $sources
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & jar cfe build/input/LkoraTa2era.jar LkoraTa2era -C build/classes .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Créer l’application
+        shell: pwsh
+        run: |
+          & jpackage --type app-image --input build/input --main-jar LkoraTa2era.jar --main-class LkoraTa2era --name LkoraTa2era --dest build/package
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Ajouter la licence Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Copy-Item LICENSE build/package/LkoraTa2era/LICENSE
+      - name: Ajouter la licence macOS
+        if: runner.os == 'macOS'
+        run: cp LICENSE build/package/LkoraTa2era.app/Contents/Resources/LICENSE
+      - name: Compresser Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path build/package/LkoraTa2era -DestinationPath LkoraTa2era-Windows.zip
+      - name: Compresser macOS
+        if: runner.os == 'macOS'
+        run: ditto -c -k --sequesterRsrc --keepParent build/package/LkoraTa2era.app LkoraTa2era-macOS.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LkoraTa2era-${{ matrix.platform }}
+          path: LkoraTa2era-${{ matrix.platform }}.zip
+          if-no-files-found: error
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+      - name: Publier la version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG_NAME: ${{ github.ref_name }}
+        run: gh release create "$TAG_NAME" artifacts/*.zip --title "$TAG_NAME" --generate-notes
